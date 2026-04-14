@@ -1,0 +1,70 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner container">
+    <div class="footer__left">
+      <span class="footer__copy">&copy; {currentYear} Ian Brennan. All rights reserved.</span>
+    </div>
+    <div class="footer__right">
+      <a href="https://www.instagram.com/ian_brennan_artist" target="_blank" rel="noopener noreferrer" class="footer__link" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+      </a>
+      <a href="mailto:ianbrennanart@gmail.com" class="footer__link">
+        ianbrennanart@gmail.com
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-6) 0;
+    margin-top: var(--space-16);
+  }
+
+  .footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    text-align: center;
+  }
+
+  .footer__copy {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  .footer__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .footer__link {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    transition: color var(--duration) var(--ease);
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer__link:hover {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 768px) {
+    .footer__inner {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+</style>

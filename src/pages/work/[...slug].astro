@@ -1,0 +1,251 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allArtworks = await getCollection('artworks');
+
+  return allArtworks.map((artwork) => {
+    const categoryWorks = allArtworks
+      .filter((a) => a.data.category === artwork.data.category)
+      .sort((a, b) => a.data.order - b.data.order);
+
+    const currentIndex = categoryWorks.findIndex((a) => a.id === artwork.id);
+    const prev = currentIndex > 0 ? categoryWorks[currentIndex - 1] : null;
+    const next = currentIndex < categoryWorks.length - 1 ? categoryWorks[currentIndex + 1] : null;
+
+    return {
+      params: { slug: artwork.id },
+      props: { artwork, prev, next },
+    };
+  });
+}
+
+const { artwork, prev, next } = Astro.props;
+const { title, year, medium, dimensions, category, image } = artwork.data;
+---
+
+<BaseLayout title={title} description={`${title}, ${year}. ${medium}, ${dimensions}. By Ian Brennan.`}>
+  <article class="artwork-detail container">
+    <div class="artwork-detail__image-wrap">
+      <button class="artwork-detail__image-btn" aria-label="View fullscreen" id="lightbox-trigger">
+        <Image
+          src={image}
+          alt={title}
+          widths={[800, 1200, 1800]}
+          sizes="(max-width: 768px) 100vw, 900px"
+          loading="eager"
+          format="webp"
+          quality={90}
+        />
+      </button>
+    </div>
+
+    <div class="artwork-detail__info">
+      <h1 class="artwork-detail__title">{title}</h1>
+      <div class="artwork-detail__meta">
+        <p>{year}</p>
+        <p>{medium}</p>
+        <p>{dimensions}</p>
+      </div>
+      <a href={`/${category}`} class="artwork-detail__category">{category} works</a>
+    </div>
+
+    <nav class="artwork-detail__nav" aria-label="Artwork navigation">
+      {prev ? (
+        <a href={`/work/${prev.id}`} class="artwork-detail__nav-link" data-astro-prefetch>
+          <span class="artwork-detail__nav-arrow">&larr;</span>
+          <span class="artwork-detail__nav-label">Previous</span>
+        </a>
+      ) : <span />}
+      {next ? (
+        <a href={`/work/${next.id}`} class="artwork-detail__nav-link" data-astro-prefetch>
+          <span class="artwork-detail__nav-label">Next</span>
+          <span class="artwork-detail__nav-arrow">&rarr;</span>
+        </a>
+      ) : <span />}
+    </nav>
+  </article>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Fullscreen image view">
+    <button class="lightbox__close" aria-label="Close fullscreen">&times;</button>
+    <div class="lightbox__content">
+      <Image
+        src={image}
+        alt={title}
+        widths={[1200, 1800, 2400]}
+        sizes="100vw"
+        loading="lazy"
+        format="webp"
+        quality={90}
+      />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .artwork-detail {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+    max-width: var(--content-width);
+  }
+
+  .artwork-detail__image-wrap {
+    margin-bottom: var(--space-6);
+  }
+
+  .artwork-detail__image-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    cursor: zoom-in;
+  }
+
+  .artwork-detail__image-btn img {
+    width: 100%;
+    height: auto;
+  }
+
+  .artwork-detail__info {
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .artwork-detail__title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-xl);
+    font-weight: 400;
+    margin-bottom: var(--space-2);
+  }
+
+  .artwork-detail__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+  }
+
+  .artwork-detail__meta p:not(:last-child)::after {
+    content: '\00B7';
+    margin-left: var(--space-1);
+  }
+
+  .artwork-detail__category {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    transition: color var(--duration) var(--ease);
+  }
+
+  .artwork-detail__category:hover {
+    color: var(--color-text);
+  }
+
+  .artwork-detail__nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--space-6);
+  }
+
+  .artwork-detail__nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    transition: color var(--duration) var(--ease);
+  }
+
+  .artwork-detail__nav-link:hover {
+    color: var(--color-text);
+  }
+
+  .artwork-detail__nav-arrow {
+    font-size: var(--text-lg);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms var(--ease), visibility 300ms var(--ease);
+    cursor: zoom-out;
+  }
+
+  .lightbox[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-4);
+    color: white;
+    font-size: 2rem;
+    z-index: 210;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity var(--duration) var(--ease);
+  }
+
+  .lightbox__close:hover {
+    opacity: 1;
+  }
+
+  .lightbox__content {
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox__content img {
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+</style>
+
+<script>
+  const trigger = document.getElementById('lightbox-trigger');
+  const lightbox = document.getElementById('lightbox');
+  const closeBtn = lightbox?.querySelector('.lightbox__close');
+
+  function openLightbox() {
+    lightbox?.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  trigger?.addEventListener('click', openLightbox);
+  closeBtn?.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+  lightbox?.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>

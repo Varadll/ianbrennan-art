@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with Ian Brennan for commissions, exhibitions, or inquiries."
+>
+  <section class="container"><div class="contact">
+    <h1>Contact</h1>
+
+    <div class="contact__grid">
+      <div class="contact__info">
+        <div class="contact__block">
+          <h2>Email</h2>
+          <a href="mailto:ianbrennanart@gmail.com">ianbrennanart@gmail.com</a>
+        </div>
+
+        <div class="contact__block">
+          <h2>Social</h2>
+          <a href="https://www.instagram.com/ian_brennan_artist" target="_blank" rel="noopener noreferrer">
+            Instagram &nearr;
+          </a>
+        </div>
+      </div>
+
+      <form class="contact__form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="sr-only">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+
+        <div class="form-field">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" required />
+        </div>
+
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div></section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+    max-width: 1000px;
+  }
+
+  .contact h1 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-12);
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .contact__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .contact__block h2 {
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-1);
+  }
+
+  .contact__block a,
+  .contact__block p {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: 1.5;
+  }
+
+  .contact__block a {
+    transition: color var(--duration) var(--ease);
+  }
+
+  .contact__block a:hover {
+    color: var(--color-text-secondary);
+  }
+
+  /* Form */
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-field label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+  }
+
+  .form-field input,
+  .form-field textarea {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    transition: border-color var(--duration) var(--ease);
+    outline: none;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--color-text);
+  }
+
+  .form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-submit {
+    align-self: flex-start;
+    padding: 0.875rem 2.5rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border: 1px solid var(--color-text);
+    transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
+    cursor: pointer;
+  }
+
+  .form-submit:hover {
+    background-color: transparent;
+    color: var(--color-text);
+  }
+</style>

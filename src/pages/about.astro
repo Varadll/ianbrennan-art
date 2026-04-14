@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import portrait from '../assets/artworks/portraits/ian-brennan-studio.jpeg';
+---
+
+<BaseLayout
+  title="About"
+  description="Ian Brennan (b. 1983, Ireland) is a self-taught artist based in Ireland, known for psychologically charged figurative paintings."
+>
+  <section class="about container">
+    <div class="about__grid">
+      <div class="about__portrait">
+        <Image
+          src={portrait}
+          alt="Ian Brennan in the studio"
+          widths={[400, 800]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          loading="eager"
+          format="webp"
+          quality={85}
+        />
+        <p class="about__portrait-caption">Ian Brennan in the studio, 2023</p>
+      </div>
+
+      <div class="about__text">
+        <h1>About the Artist</h1>
+
+        <div class="about__statement">
+          <p>
+            Ian Brennan (b. 1983, Ireland) is a self-taught artist based in Cork, Ireland.
+            Since beginning his practice in 2019, Brennan has gained recognition for
+            psychologically charged figurative paintings that explore the tension between
+            vulnerability and presence.
+          </p>
+          <p>
+            Drawing on his background in counselling and psychotherapy, Brennan brings a
+            distinctive psychological depth to his portraits. His subjects are stripped bare
+            &mdash; both literally and metaphorically &mdash; revealing their inherent mystery
+            and underlying complexity.
+          </p>
+          <p>
+            One of Europe's most exciting emerging artists, Brennan's work is highly sought
+            after and fast becoming a collector's item. A self-taught painter of rare sensibility
+            and acuity, Brennan strips his sitters bare to bring to the canvas their inherent
+            mystery and underlying complexity. Viscerally raw, emotionally unflinching.
+          </p>
+          <p>
+            Brennan's abstract works are often his response to the elements and to nature.
+            His close observation combines with intriguing surface texture and carefully balanced
+            composition to create unique representations of his own internal landscape.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .about__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+    }
+  }
+
+  .about__portrait img {
+    width: 100%;
+    height: auto;
+  }
+
+  .about__portrait-caption {
+    margin-top: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  .about__text h1 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .about__statement {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about__statement p {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import ArtworkCard from './ArtworkCard.astro';
+
+interface ArtworkEntry {
+  id: string;
+  data: {
+    title: string;
+    year: string;
+    medium: string;
+    image: ImageMetadata;
+    order: number;
+  };
+}
+
+interface Props {
+  artworks: ArtworkEntry[];
+}
+
+const { artworks } = Astro.props;
+const sorted = artworks.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="artwork-grid">
+  {sorted.map((artwork, i) => (
+    <ArtworkCard
+      slug={artwork.id}
+      title={artwork.data.title}
+      year={artwork.data.year}
+      medium={artwork.data.medium}
+      image={artwork.data.image}
+      eager={i < 4}
+    />
+  ))}
+</div>
+
+<style>
+  .artwork-grid {
+    columns: 1;
+    column-gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .artwork-grid {
+      columns: 2;
+    }
+  }
+</style>

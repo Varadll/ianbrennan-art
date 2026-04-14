@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtworkGrid from '../components/ArtworkGrid.astro';
+import { getCollection } from 'astro:content';
+
+const allArtworks = await getCollection('artworks');
+const figurative = allArtworks.filter(a => a.data.category === 'figurative');
+---
+
+<BaseLayout
+  title="Figurative Works"
+  description="Figurative paintings by Ian Brennan. Psychologically charged works exploring vulnerability and presence."
+>
+  <section class="gallery-page container">
+    <div class="gallery-page__header">
+      <h1>Figurative Works</h1>
+      <p class="gallery-page__count">{figurative.length} works</p>
+    </div>
+    <ArtworkGrid artworks={figurative} />
+  </section>
+</BaseLayout>
+
+<style>
+  .gallery-page {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .gallery-page__header {
+    margin-bottom: var(--space-8);
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+
+  .gallery-page__header h1 {
+    font-size: var(--text-2xl);
+  }
+
+  .gallery-page__count {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+  }
+</style>

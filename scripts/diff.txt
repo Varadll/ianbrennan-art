@@ -1,0 +1,89 @@
+src/content/artworks/abstract/accidental-waking.md  [Accidental Waking]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 7.8 x 7.8 in 66'
+src/content/artworks/abstract/brain-fog.md  [Brain Fog]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 7.9 x 7.9 in 80'
+src/content/artworks/abstract/clusterfuck.md  [Clusterfuck]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 70.8 x 94.5 in'
+src/content/artworks/abstract/crunch.md  [Crunch]
+    MEDIUM cur='Mixed media and oil on canvas' pdf='Mixed media and oil on canvas 31 x 31 in'
+src/content/artworks/abstract/de-frag-menting-my-self.md  [De-Frag-Menting My-Self]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 86'
+src/content/artworks/abstract/dont-be-afraid-of-silence.md  [Don't Be Afraid of Silence]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 70.8 x 94.5 in 68'
+src/content/artworks/abstract/fall.md  [Fall]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 78 Let M'
+src/content/artworks/abstract/marz.md  [Marz]
+    MEDIUM cur='Mixed media and oil on canvas' pdf='Mixed media and oil on canvas 31 x 31 in'
+src/content/artworks/abstract/mask.md  [Mask]
+    MEDIUM cur='Mixed media and oil on canvas' pdf='Mixed media and oil on canvas 7.8 x 7.8 i'
+src/content/artworks/abstract/opening.md  [Opening]
+    MEDIUM cur='Mixed media and oil on canvas' pdf='Mixed media and oil on canvas 31 x 31 in'
+src/content/artworks/abstract/screaming-heart.md  [Screaming Heart]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 70.8 x 94.5 in'
+src/content/artworks/abstract/seaweed.md  [Seaweed]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 7.8 x 7.8 in 90'
+src/content/artworks/abstract/teardrop.md  [Teardrop]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 70.8 x 94.5 in'
+src/content/artworks/abstract/the-red-sea.md  [The Red Sea]
+    MEDIUM cur='Mixed media and oil on canvas' pdf='Mixed media and oil on canvas 7.8 x 7.8 i'
+src/content/artworks/abstract/unplugging-the-chord.md  [Unplugging The Chord]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 82'
+src/content/artworks/abstract/wholeness-returns.md  [Wholeness Returns]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 84'
+src/content/artworks/figurative/animal-instinct.md  [Animal Instinct]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 62'
+src/content/artworks/figurative/coat-of-arms.md  [Coat Of Arms, Portrait of Sue Tilley]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 36'
+src/content/artworks/figurative/crown-of-thorns.md  [Crown Of Thorns]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 58'
+src/content/artworks/figurative/emperors-new-clothes.md  [Emperor's New Clothes]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 22'
+src/content/artworks/figurative/feels-like-an-approach.md  [Feels Like An Approach]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 60'
+src/content/artworks/figurative/fuck-off-world.md  [Fuck Off World]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 14'
+src/content/artworks/figurative/gently-i-flow.md  [Gently I Flow]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 48'
+src/content/artworks/figurative/get-it-over-with.md  [Get It Over With]
+    YEAR cur=2020 pdf=2022
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 47 x 31 in 48 Menst'
+src/content/artworks/figurative/hold-your-own.md  [Hold Your Own]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 30'
+src/content/artworks/figurative/homecoming.md  [Homecoming]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 52'
+src/content/artworks/figurative/hope-youre-not-lonely-without-me.md  [Hope You're Not Lonely, Without Me]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 18'
+src/content/artworks/figurative/lonely-hour.md  [Lonely Hour]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 16'
+src/content/artworks/figurative/menstrual-girl.md  [Menstrual Girl]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 46'
+src/content/artworks/figurative/milk-tooth.md  [Milk Tooth]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31x 31 in 38'
+src/content/artworks/figurative/mothering.md  [Mothering]
+    YEAR cur=2022-24 pdf=2022
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 24'
+src/content/artworks/figurative/permission.md  [Permission]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 20'
+src/content/artworks/figurative/porcelain.md  [Porcelain]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 10'
+src/content/artworks/figurative/serenity-prayer.md  [Serenity Prayer]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 40'
+src/content/artworks/figurative/sometimes-i-suffer-with-my-feelings.md  [Sometimes I Suffer With My Feelings]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 56'
+src/content/artworks/figurative/stigmata.md  [Stigmata]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 26'
+src/content/artworks/figurative/table-for-one.md  [Table For One]
+    YEAR cur=2022-23 pdf=2022
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 28'
+src/content/artworks/figurative/the-french-man.md  [The French Man]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 32'
+src/content/artworks/figurative/the-office-clerk.md  [The Office Clerk]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 50'
+src/content/artworks/figurative/the-recliner-ii.md  [The Recliner II]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 44'
+src/content/artworks/figurative/the-recliner.md  [The Recliner]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 31 x 31 in 42'
+src/content/artworks/figurative/tobacco-and-kindness.md  [Tobacco and Kindness]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 39 x 39 in 34'
+src/content/artworks/figurative/when-did-the-light-die.md  [When Did The Light Die?]
+    MEDIUM cur='Oil on canvas' pdf='Oil on canvas 59 x 59 in 12'

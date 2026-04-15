@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import ViewOnWall from '../../components/ViewOnWall.astro';
 
 export async function getStaticPaths() {
   const allArtworks = await getCollection('artworks');
@@ -23,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 const { artwork, prev, next } = Astro.props;
-const { title, year, medium, dimensions, category, image } = artwork.data;
+const { title, year, medium, dimensions, widthCm, heightCm, category, image } = artwork.data;
 ---
 
 <BaseLayout title={title} description={`${title}, ${year}. ${medium}, ${dimensions}. By Ian Brennan.`}>
@@ -38,6 +39,7 @@ const { title, year, medium, dimensions, category, image } = artwork.data;
           loading="eager"
           format="webp"
           quality={90}
+          transition:name={`art-${artwork.id}`}
         />
       </button>
     </div>
@@ -49,6 +51,15 @@ const { title, year, medium, dimensions, category, image } = artwork.data;
         <p>{medium}</p>
         <p>{dimensions}</p>
       </div>
+      <ViewOnWall
+        src={image}
+        alt={title}
+        widthCm={widthCm}
+        heightCm={heightCm}
+        title={title}
+        dimensions={dimensions}
+      />
+
       <a href={`/${category}`} class="artwork-detail__category">{category} works</a>
     </div>
 
@@ -227,25 +238,33 @@ const { title, year, medium, dimensions, category, image } = artwork.data;
 </style>
 
 <script>
-  const trigger = document.getElementById('lightbox-trigger');
-  const lightbox = document.getElementById('lightbox');
-  const closeBtn = lightbox?.querySelector('.lightbox__close');
+  function bindLightbox() {
+    const trigger = document.getElementById('lightbox-trigger');
+    const lightbox = document.getElementById('lightbox');
+    if (!trigger || !lightbox) return;
+    const closeBtn = lightbox.querySelector('.lightbox__close');
 
-  function openLightbox() {
-    lightbox?.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    function open() {
+      lightbox!.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lightbox!.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', open);
+    closeBtn?.addEventListener('click', (e) => { e.stopPropagation(); close(); });
+    lightbox.addEventListener('click', close);
+
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('astro:before-swap', () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    }, { once: true });
   }
 
-  function closeLightbox() {
-    lightbox?.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  trigger?.addEventListener('click', openLightbox);
-  closeBtn?.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
-  lightbox?.addEventListener('click', closeLightbox);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
+  bindLightbox();
+  document.addEventListener('astro:page-load', bindLightbox);
 </script>

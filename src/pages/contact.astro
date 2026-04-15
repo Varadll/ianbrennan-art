@@ -10,7 +10,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h1>Contact</h1>
 
     <div class="contact__grid">
-      <div class="contact__info">
+      <div class="contact__info" data-reveal>
         <div class="contact__block">
           <h2>Email</h2>
           <a href="mailto:ianbrennanart@gmail.com">ianbrennanart@gmail.com</a>
@@ -24,7 +24,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
 
-      <form class="contact__form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="contact__form" data-reveal name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact" />
         <p class="sr-only">
           <label>Don't fill this out: <input name="bot-field" /></label>

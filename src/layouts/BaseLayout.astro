@@ -5,6 +5,7 @@ import '@fontsource/eb-garamond/600.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -50,6 +51,8 @@ const fullTitle = title === 'Home' ? 'Ian Brennan — Artist' : `${title} — Ia
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <ClientRouter />
   </head>
   <body>
     <Header />
@@ -57,5 +60,33 @@ const fullTitle = title === 'Home' ? 'Ian Brennan — Artist' : `${title} — Ia
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Reveal-on-scroll: re-runs after every Astro view transition
+      function initReveal() {
+        const els = document.querySelectorAll('[data-reveal]:not(.is-visible)');
+        if (!els.length) return;
+
+        if (!('IntersectionObserver' in window) ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          els.forEach((el) => el.classList.add('is-visible'));
+          return;
+        }
+
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+
+        els.forEach((el) => io.observe(el));
+      }
+
+      initReveal();
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
   </body>
 </html>

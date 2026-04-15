@@ -1,0 +1,618 @@
+{
+  "accidental-waking": {
+    "dim_cm": [
+      19.8,
+      19.8
+    ],
+    "dim_in": [
+      7.8,
+      7.8
+    ],
+    "medium": "Oil on canvas 7.8 x 7.8 in 66",
+    "page": 34,
+    "title": "Accidental Waking",
+    "year": "2023"
+  },
+  "animal-instinct": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 62",
+    "page": 32,
+    "title": "Animal Instinct",
+    "year": "2019"
+  },
+  "brain-fog": {
+    "dim_cm": [
+      20.1,
+      20.1
+    ],
+    "dim_in": [
+      7.9,
+      7.9
+    ],
+    "medium": "Oil on canvas 7.9 x 7.9 in 80",
+    "page": 40,
+    "title": "Brain Fog",
+    "year": "2023"
+  },
+  "clusterfuck": {
+    "dim_cm": [
+      179.8,
+      240.0
+    ],
+    "dim_in": [
+      70.8,
+      94.5
+    ],
+    "medium": "Oil on canvas 70.8 x 94.5 in",
+    "page": 37,
+    "title": "Clusterfuck",
+    "year": "2023"
+  },
+  "coat-of-arms-portrait-of-sue-tilley": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 36",
+    "page": 19,
+    "title": "Coat Of Arms, Portrait of Sue Tilley",
+    "year": "2023"
+  },
+  "crown-of-thorns": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 58",
+    "page": 30,
+    "title": "Crown Of Thorns",
+    "year": "2019"
+  },
+  "crunch": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Mixed media and oil on canvas 31 x 31 in",
+    "page": 49,
+    "title": "Crunch",
+    "year": "2019"
+  },
+  "de-frag-menting-my-self": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 86",
+    "page": 43,
+    "title": "De-Frag-Menting My-Self",
+    "year": "2023"
+  },
+  "dont-be-afraid-of-silence": {
+    "dim_cm": [
+      179.8,
+      240.0
+    ],
+    "dim_in": [
+      70.8,
+      94.5
+    ],
+    "medium": "Oil on canvas 70.8 x 94.5 in 68",
+    "page": 35,
+    "title": "Don’t Be Afraid of Silence",
+    "year": "2023"
+  },
+  "emperors-new-clothes": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 22",
+    "page": 12,
+    "title": "Emperor’s New Clothes",
+    "year": "2024"
+  },
+  "fall": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 78 Let M",
+    "page": 39,
+    "title": "Fall",
+    "year": "2023"
+  },
+  "feels-like-an-approach": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 60",
+    "page": 31,
+    "title": "Feels Like An Approach",
+    "year": "2019"
+  },
+  "fuck-off-world": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 14",
+    "page": 8,
+    "title": "Fuck Off World",
+    "year": "2024"
+  },
+  "gently-i-flow": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 48",
+    "page": 25,
+    "title": "Gently I Flow",
+    "year": "2022"
+  },
+  "get-it-over-with": {
+    "dim_cm": [
+      119.4,
+      78.7
+    ],
+    "dim_in": [
+      47.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 47 x 31 in 48 Menst",
+    "page": 24,
+    "title": "Get It Over With",
+    "year": "2022"
+  },
+  "hold-your-own": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 30",
+    "page": 16,
+    "title": "Hold Your Own",
+    "year": "2023"
+  },
+  "homecoming": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 52",
+    "page": 27,
+    "title": "Homecoming",
+    "year": "2021"
+  },
+  "hope-youre-not-lonely-without-me": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 18",
+    "page": 10,
+    "title": "Hope You’re Not Lonely, Without Me",
+    "year": "2024"
+  },
+  "let-my-guard-down": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 79",
+    "page": 39,
+    "title": "Let My Guard Down",
+    "year": "2023"
+  },
+  "lonely-hour": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 16",
+    "page": 9,
+    "title": "Lonely Hour",
+    "year": "2024"
+  },
+  "marz": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Mixed media and oil on canvas 31 x 31 in",
+    "page": 48,
+    "title": "Marz",
+    "year": "2019"
+  },
+  "mask": {
+    "dim_cm": [
+      19.8,
+      19.8
+    ],
+    "dim_in": [
+      7.8,
+      7.8
+    ],
+    "medium": "Mixed media and oil on canvas 7.8 x 7.8 i",
+    "page": 47,
+    "title": "Mask",
+    "year": "2019"
+  },
+  "menstrual-girl": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 46",
+    "page": 24,
+    "title": "Menstrual Girl",
+    "year": "2022"
+  },
+  "milk-tooth": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31x 31 in 38",
+    "page": 20,
+    "title": "Milk Tooth",
+    "year": "2022"
+  },
+  "mothering": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 24",
+    "page": 13,
+    "title": "Mothering",
+    "year": "2022"
+  },
+  "opening": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Mixed media and oil on canvas 31 x 31 in",
+    "page": 44,
+    "title": "Opening",
+    "year": "2021"
+  },
+  "permission": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 20",
+    "page": 11,
+    "title": "Permission",
+    "year": "2024"
+  },
+  "porcelain": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 10",
+    "page": 6,
+    "title": "Porcelain",
+    "year": "2026"
+  },
+  "screaming-heart": {
+    "dim_cm": [
+      179.8,
+      240.0
+    ],
+    "dim_in": [
+      70.8,
+      94.5
+    ],
+    "medium": "Oil on canvas 70.8 x 94.5 in",
+    "page": 36,
+    "title": "Screaming Heart",
+    "year": "2023"
+  },
+  "seaweed": {
+    "dim_cm": [
+      19.8,
+      19.8
+    ],
+    "dim_in": [
+      7.8,
+      7.8
+    ],
+    "medium": "Oil on canvas 7.8 x 7.8 in 90",
+    "page": 45,
+    "title": "Seaweed",
+    "year": "2020"
+  },
+  "serenity-prayer": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 40",
+    "page": 21,
+    "title": "Serenity Prayer",
+    "year": "2022"
+  },
+  "sometimes-i-suffer-with-my-feelings": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 56",
+    "page": 29,
+    "title": "Sometimes I Suffer With My Feelings",
+    "year": "2020"
+  },
+  "stigmata": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 26",
+    "page": 14,
+    "title": "Stigmata",
+    "year": "2024"
+  },
+  "table-for-one": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 28",
+    "page": 15,
+    "title": "Table For One",
+    "year": "2022"
+  },
+  "teardrop": {
+    "dim_cm": [
+      179.8,
+      240.0
+    ],
+    "dim_in": [
+      70.8,
+      94.5
+    ],
+    "medium": "Oil on canvas 70.8 x 94.5 in",
+    "page": 38,
+    "title": "Teardrop",
+    "year": "2023"
+  },
+  "the-french-man": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 32",
+    "page": 17,
+    "title": "The French Man",
+    "year": "2023"
+  },
+  "the-office-clerk": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 50",
+    "page": 26,
+    "title": "The Office Clerk",
+    "year": "2021"
+  },
+  "the-recliner": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 42",
+    "page": 22,
+    "title": "The Recliner",
+    "year": "2022"
+  },
+  "the-recliner-ii": {
+    "dim_cm": [
+      78.7,
+      78.7
+    ],
+    "dim_in": [
+      31.0,
+      31.0
+    ],
+    "medium": "Oil on canvas 31 x 31 in 44",
+    "page": 23,
+    "title": "The Recliner II",
+    "year": "2022"
+  },
+  "the-red-sea": {
+    "dim_cm": [
+      19.8,
+      19.8
+    ],
+    "dim_in": [
+      7.8,
+      7.8
+    ],
+    "medium": "Mixed media and oil on canvas 7.8 x 7.8 i",
+    "page": 46,
+    "title": "The Red Sea",
+    "year": "2019"
+  },
+  "tobacco-and-kindness": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 34",
+    "page": 18,
+    "title": "Tobacco and Kindness",
+    "year": "2022"
+  },
+  "unplugging-the-chord": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 82",
+    "page": 41,
+    "title": "Unplugging The Chord",
+    "year": "2023"
+  },
+  "when-did-the-light-die": {
+    "dim_cm": [
+      149.9,
+      149.9
+    ],
+    "dim_in": [
+      59.0,
+      59.0
+    ],
+    "medium": "Oil on canvas 59 x 59 in 12",
+    "page": 7,
+    "title": "When Did The Light Die?",
+    "year": "2025"
+  },
+  "wholeness-returns": {
+    "dim_cm": [
+      99.1,
+      99.1
+    ],
+    "dim_in": [
+      39.0,
+      39.0
+    ],
+    "medium": "Oil on canvas 39 x 39 in 84",
+    "page": 42,
+    "title": "Wholeness Returns",
+    "year": "2023"
+  }
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Scale reference for "View on the Wall":
+    viewBox: 1600 × 1200
+    1 cm = 4 px (so 200 cm sofa = 800 px)
+    Floor line at y = 900
+    Wall: y = 0 to 900 (height = 900 px = 225 cm of wall above floor)
+    Sofa top at y = 880 (sofa = ~80 cm tall = 320 px... approximated visually)
+    Eye level / hang centerline: y = 460  (440 px above floor = 110 cm — gallery standard 145–155cm
+       to centre of work, but anchored slightly higher visually here so larger pieces sit nicely)
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A minimalist room with a sofa against a blank wall">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EFECE6"/>
+      <stop offset="60%" stop-color="#E8E4DC"/>
+      <stop offset="100%" stop-color="#D9D3C7"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B6A88E"/>
+      <stop offset="100%" stop-color="#8E7E63"/>
+    </linearGradient>
+    <radialGradient id="lightWash" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sofa" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3F3A33"/>
+      <stop offset="100%" stop-color="#2A2620"/>
+    </linearGradient>
+    <linearGradient id="cushion" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A443B"/>
+      <stop offset="100%" stop-color="#322D26"/>
+    </linearGradient>
+    <filter id="sofaShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <!-- Wall -->
+  <rect x="0" y="0" width="1600" height="900" fill="url(#wall)"/>
+  <!-- Soft light wash on wall -->
+  <rect x="0" y="0" width="1600" height="900" fill="url(#lightWash)"/>
+
+  <!-- Wall–floor seam (subtle baseboard) -->
+  <rect x="0" y="884" width="1600" height="16" fill="#C8C2B6"/>
+  <line x1="0" y1="884" x2="1600" y2="884" stroke="#A89F8E" stroke-width="1"/>
+
+  <!-- Floor -->
+  <rect x="0" y="900" width="1600" height="300" fill="url(#floor)"/>
+
+  <!-- Soft floor sheen / perspective hint -->
+  <ellipse cx="800" cy="1100" rx="900" ry="60" fill="#000" opacity="0.06"/>
+
+  <!-- Sofa shadow on floor -->
+  <ellipse cx="800" cy="1170" rx="460" ry="22" fill="#000" opacity="0.32" filter="url(#sofaShadow)"/>
+
+  <!-- Sofa — centered, 800px wide (= 200cm), 280px tall total -->
+  <!-- Base / legs -->
+  <rect x="408" y="1140" width="20" height="22" rx="2" fill="#1B1814"/>
+  <rect x="1172" y="1140" width="20" height="22" rx="2" fill="#1B1814"/>
+
+  <!-- Body -->
+  <rect x="400" y="900" width="800" height="240" rx="14" fill="url(#sofa)"/>
+
+  <!-- Cushions -->
+  <rect x="420" y="940" width="370" height="170" rx="14" fill="url(#cushion)"/>
+  <rect x="810" y="940" width="370" height="170" rx="14" fill="url(#cushion)"/>
+
+  <!-- Back highlight -->
+  <rect x="400" y="900" width="800" height="40" rx="14" fill="#FFFFFF" opacity="0.05"/>
+</svg>

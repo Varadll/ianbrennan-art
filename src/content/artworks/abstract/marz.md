@@ -2,7 +2,9 @@
 title: "Marz"
 year: "2019"
 medium: "Mixed media and oil on canvas"
-dimensions: "31 x 31 in"
+dimensions: "78.7 × 78.7 cm (31 × 31 in)"
+widthCm: 78.7
+heightCm: 78.7
 category: "abstract"
 image: "../../../assets/artworks/abstract/marz.jpeg"
 order: 15

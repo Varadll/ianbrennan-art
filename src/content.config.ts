@@ -9,6 +9,8 @@ const artworks = defineCollection({
       year: z.string(),
       medium: z.string(),
       dimensions: z.string(),
+      widthCm: z.number().positive(),
+      heightCm: z.number().positive(),
       category: z.enum(['figurative', 'abstract']),
       image: image(),
       order: z.number(),

@@ -7,33 +7,60 @@ const allArtworks = await getCollection('artworks');
 const figurative = allArtworks.filter(a => a.data.category === 'figurative').sort((a, b) => a.data.order - b.data.order);
 const abstract = allArtworks.filter(a => a.data.category === 'abstract').sort((a, b) => a.data.order - b.data.order);
 
-const heroArtwork = figurative[0];
+// Hero rotation: 3 strongest abstracts
+const heroSlugs = ['abstract/accidental-waking', 'abstract/the-red-sea', 'abstract/opening'];
+const heroArtworks = heroSlugs
+  .map((id) => abstract.find((a) => a.id === id))
+  .filter((a): a is NonNullable<typeof a> => Boolean(a));
+
 const featuredFigurative = figurative[1] || figurative[0];
-const featuredAbstract = abstract[0];
+const featuredAbstract = abstract.find((a) => a.id === 'abstract/accidental-waking') || abstract[0];
 ---
 
 <BaseLayout title="Home">
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero__image-wrap">
-      <Image
-        src={heroArtwork.data.image}
-        alt={heroArtwork.data.title}
-        widths={[800, 1200, 1800]}
-        sizes="100vw"
-        loading="eager"
-        format="webp"
-        quality={85}
-      />
+  <section class="hero" aria-label="Featured artwork">
+    <div class="hero__stage">
+      {heroArtworks.map((art, i) => {
+        const perSlide = 8; // seconds visible
+        const fadeIn = 1.5;
+        const total = heroArtworks.length * perSlide;
+        // Negative delay for first slide so it starts already visible (mid-fade-in).
+        const delay = i === 0 ? -fadeIn : i * perSlide - fadeIn;
+        return (
+          <div
+            class="hero__slide"
+            style={`animation-duration:${total}s;animation-delay:${delay}s;`}
+          >
+            <Image
+              src={art.data.image}
+              alt={art.data.title}
+              widths={[1200, 1800, 2400]}
+              sizes="100vw"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              format="webp"
+              quality={85}
+              {...(i === 0 ? { fetchpriority: 'high' } : {})}
+            />
+          </div>
+        );
+      })}
+      <div class="hero__overlay" aria-hidden="true"></div>
     </div>
-    <div class="hero__caption container">
-      <p class="hero__title">{heroArtwork.data.title}</p>
-      <p class="hero__meta">{heroArtwork.data.year}</p>
+
+    <div class="hero__content">
+      <h1 class="hero__title">Ian Brennan</h1>
+      <p class="hero__sub">Painter &middot; Cork, Ireland</p>
     </div>
+
+    <a href="#intro" class="hero__scroll" aria-label="Scroll to content">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
   </section>
 
   <!-- Intro -->
-  <section class="intro container">
+  <section id="intro" class="intro container" data-reveal>
     <p class="intro__text">
       Figurative and abstract paintings by Ian Brennan.<br />
       <span class="intro__accent">London Art Biennale 2021 Winner</span>
@@ -42,16 +69,16 @@ const featuredAbstract = abstract[0];
 
   <!-- Categories -->
   <section class="categories container">
-    <a href="/figurative" class="category-block" data-astro-prefetch>
+    <a href="/figurative" class="category-block" data-astro-prefetch data-reveal>
       <div class="category-block__image-wrap">
         <Image
           src={featuredFigurative.data.image}
           alt={featuredFigurative.data.title}
-          widths={[400, 800]}
+          widths={[400, 800, 1200]}
           sizes="(max-width: 768px) 100vw, 50vw"
           loading="lazy"
           format="webp"
-          quality={80}
+          quality={82}
         />
       </div>
       <div class="category-block__info">
@@ -61,16 +88,16 @@ const featuredAbstract = abstract[0];
       </div>
     </a>
 
-    <a href="/abstract" class="category-block" data-astro-prefetch>
+    <a href="/abstract" class="category-block" data-astro-prefetch data-reveal>
       <div class="category-block__image-wrap">
         <Image
           src={featuredAbstract.data.image}
           alt={featuredAbstract.data.title}
-          widths={[400, 800]}
+          widths={[400, 800, 1200]}
           sizes="(max-width: 768px) 100vw, 50vw"
           loading="lazy"
           format="webp"
-          quality={80}
+          quality={82}
         />
       </div>
       <div class="category-block__info">
@@ -83,48 +110,145 @@ const featuredAbstract = abstract[0];
 </BaseLayout>
 
 <style>
-  /* Hero */
+  /* ============ Hero ============ */
   .hero {
     position: relative;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    min-height: 560px;
+    max-height: 900px;
+    overflow: hidden;
+    background-color: #111;
+    /* Pull hero up under the sticky header so image fills behind it */
+    margin-top: calc(-1 * var(--header-height));
+    padding-top: var(--header-height);
+  }
+
+  .hero__stage {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation-name: heroCycle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+  }
+
+  .hero__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1.05);
+    animation: heroDrift 24s ease-in-out infinite alternate;
+  }
+
+  /* 3 slides × 8s = 24s cycle. Visible window = 33.3%, fade ≈ 6.25%. */
+  @keyframes heroCycle {
+    0%    { opacity: 0; }
+    6.25% { opacity: 1; }
+    33.3% { opacity: 1; }
+    39.6% { opacity: 0; }
+    100%  { opacity: 0; }
+  }
+
+  @keyframes heroDrift {
+    from { transform: scale(1.04) translate3d(0, 0, 0); }
+    to   { transform: scale(1.08) translate3d(0, -1.5%, 0); }
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.15) 35%,
+      rgba(0, 0, 0, 0.15) 65%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--space-8) 0 var(--space-4);
-  }
-
-  .hero__image-wrap {
-    width: 100%;
-    max-width: 1000px;
-    padding: 0 var(--space-4);
-  }
-
-  .hero__image-wrap img {
-    width: 100%;
-    height: auto;
-  }
-
-  .hero__caption {
+    justify-content: center;
     text-align: center;
-    padding-top: var(--space-3);
+    padding: 0 var(--space-4);
+    color: #fff;
+    animation: heroFadeIn 1.4s var(--ease-out) both;
+  }
+
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
   }
 
   .hero__title {
     font-family: var(--font-serif);
-    font-style: italic;
-    font-size: var(--text-lg);
-    color: var(--color-text);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 9vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   }
 
-  .hero__meta {
+  .hero__sub {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
     font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
   }
 
-  /* Intro */
+  .hero__scroll {
+    position: absolute;
+    z-index: 2;
+    bottom: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    animation: heroFadeIn 1.4s 0.6s var(--ease-out) both;
+  }
+
+  .hero__scroll-line {
+    display: block;
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    animation: scrollPulse 2.4s ease-in-out infinite;
+    transform-origin: top;
+  }
+
+  @keyframes scrollPulse {
+    0%   { transform: scaleY(0.4); opacity: 0.4; }
+    50%  { transform: scaleY(1);   opacity: 1; }
+    100% { transform: scaleY(0.4); opacity: 0.4; }
+  }
+
+  /* ============ Intro ============ */
   .intro {
     text-align: center;
-    padding: var(--space-12) 0;
+    padding: var(--space-16) 0 var(--space-12);
   }
 
   .intro__text {
@@ -139,7 +263,7 @@ const featuredAbstract = abstract[0];
     font-style: italic;
   }
 
-  /* Categories */
+  /* ============ Categories ============ */
   .categories {
     display: grid;
     grid-template-columns: 1fr;
@@ -150,6 +274,7 @@ const featuredAbstract = abstract[0];
   @media (min-width: 768px) {
     .categories {
       grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
     }
   }
 
@@ -160,18 +285,20 @@ const featuredAbstract = abstract[0];
   .category-block__image-wrap {
     overflow: hidden;
     background-color: var(--color-bg-alt);
-    aspect-ratio: 1;
+    aspect-ratio: 4 / 5;
   }
 
   .category-block__image-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity var(--duration) var(--ease);
+    transition: transform var(--duration-slow) var(--ease-out),
+                opacity var(--duration) var(--ease);
+    will-change: transform;
   }
 
   .category-block:hover .category-block__image-wrap img {
-    opacity: 0.92;
+    transform: scale(1.03);
   }
 
   .category-block__info {
@@ -196,12 +323,23 @@ const featuredAbstract = abstract[0];
     font-size: var(--text-sm);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     color: var(--color-text-secondary);
     transition: color var(--duration) var(--ease);
   }
 
   .category-block:hover .category-block__link {
     color: var(--color-text);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__slide,
+    .hero__slide img,
+    .hero__scroll-line,
+    .hero__content,
+    .hero__scroll {
+      animation: none !important;
+    }
+    .hero__slide--first { opacity: 1; }
   }
 </style>

@@ -93,17 +93,46 @@ const navLinks = [
   }
 
   .header__link {
+    position: relative;
+    display: inline-block;
     font-size: var(--text-sm);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-text-secondary);
+    padding-bottom: 4px;
     transition: color var(--duration) var(--ease);
+  }
+
+  .header__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--duration) var(--ease-out);
   }
 
   .header__link:hover,
   .header__link--active {
     color: var(--color-text);
+  }
+
+  .header__link:hover::after,
+  .header__link--active::after {
+    transform: scaleX(1);
+  }
+
+  .header__logo {
+    transition: opacity var(--duration) var(--ease);
+  }
+
+  .header__logo:hover {
+    opacity: 0.7;
   }
 
   /* Hamburger */
@@ -193,10 +222,13 @@ const navLinks = [
 </style>
 
 <script>
-  const menuBtn = document.querySelector('.header__menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  // Re-bind on every Astro view transition (header is replaced on nav).
+  function bindMenu() {
+    const menuBtn = document.querySelector<HTMLButtonElement>('.header__menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!menuBtn || !mobileMenu || menuBtn.dataset.bound === '1') return;
+    menuBtn.dataset.bound = '1';
 
-  if (menuBtn && mobileMenu) {
     menuBtn.addEventListener('click', () => {
       const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
       menuBtn.setAttribute('aria-expanded', String(!isOpen));
@@ -205,4 +237,10 @@ const navLinks = [
       document.body.style.overflow = isOpen ? '' : 'hidden';
     });
   }
+
+  bindMenu();
+  document.addEventListener('astro:page-load', () => {
+    document.body.style.overflow = '';
+    bindMenu();
+  });
 </script>

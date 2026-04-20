@@ -17,6 +17,7 @@ const pressLinks = [
 const navLinks = [
   { href: '/figurative', label: 'Figurative' },
   { href: '/abstract', label: 'Abstract' },
+  // Press accordion goes here (position 3) — rendered separately below
   { href: '/about', label: 'About' },
   { href: '/exhibitions', label: 'Exhibitions' },
   { href: '/contact', label: 'Contact' },
@@ -42,18 +43,20 @@ const navLinks = [
 <div id="site-menu" class="site-menu" aria-hidden="true" role="dialog" aria-label="Navigation">
   <nav aria-label="Main navigation">
     <ul class="site-menu__list">
-      {navLinks.map(link => (
-        <li>
-          <a
-            href={link.href}
-            class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith(link.href) }]}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+      <!-- Figurative -->
+      <li>
+        <a href="/figurative" class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith('/figurative') }]}>
+          Figurative
+        </a>
+      </li>
+      <!-- Abstract -->
+      <li>
+        <a href="/abstract" class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith('/abstract') }]}>
+          Abstract
+        </a>
+      </li>
 
-      <!-- Press accordion -->
+      <!-- Press accordion — position 3 -->
       <li class="site-menu__press">
         <button class="site-menu__link site-menu__press-toggle" aria-expanded="false" type="button">
           Press
@@ -75,6 +78,23 @@ const navLinks = [
             </li>
           ))}
         </ul>
+      </li>
+
+      <!-- About, Exhibitions, Contact -->
+      <li>
+        <a href="/about" class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith('/about') }]}>
+          About
+        </a>
+      </li>
+      <li>
+        <a href="/exhibitions" class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith('/exhibitions') }]}>
+          Exhibitions
+        </a>
+      </li>
+      <li>
+        <a href="/contact" class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith('/contact') }]}>
+          Contact
+        </a>
       </li>
     </ul>
   </nav>

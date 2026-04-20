@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import ViewOnWall from '../../components/ViewOnWall.astro';
+// ViewOnWall removed — will re-add when polished
 
 export async function getStaticPaths() {
   const allArtworks = await getCollection('artworks');
@@ -51,15 +51,6 @@ const { title, year, medium, dimensions, widthCm, heightCm, category, image } = 
         <p>{medium}</p>
         <p>{dimensions}</p>
       </div>
-      <ViewOnWall
-        src={image}
-        alt={title}
-        widthCm={widthCm}
-        heightCm={heightCm}
-        title={title}
-        dimensions={dimensions}
-      />
-
       <a href={`/${category}`} class="artwork-detail__category">{category} works</a>
     </div>
 

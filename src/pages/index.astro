@@ -22,8 +22,8 @@ const featuredAbstract = abstract.find((a) => a.id === 'abstract/accidental-waki
   <section class="hero" aria-label="Featured artwork">
     <div class="hero__stage">
       {heroArtworks.map((art, i) => {
-        const perSlide = 8; // seconds visible
-        const fadeIn = 1.5;
+        const perSlide = 4; // seconds visible
+        const fadeIn = 1;
         const total = heroArtworks.length * perSlide;
         // Negative delay for first slide so it starts already visible (mid-fade-in).
         const delay = i === 0 ? -fadeIn : i * perSlide - fadeIn;
@@ -138,16 +138,16 @@ const featuredAbstract = abstract.find((a) => a.id === 'abstract/accidental-waki
     object-fit: cover;
     object-position: center;
     transform: scale(1.05);
-    animation: heroDrift 24s ease-in-out infinite alternate;
+    animation: heroDrift 12s ease-in-out infinite alternate;
   }
 
-  /* 3 slides × 8s = 24s cycle. Visible window = 33.3%, fade ≈ 6.25%. */
+  /* 3 slides × 4s = 12s cycle. Visible window = 33.3%, fade = 8.33% (1s). */
   @keyframes heroCycle {
-    0%    { opacity: 0; }
-    6.25% { opacity: 1; }
-    33.3% { opacity: 1; }
-    39.6% { opacity: 0; }
-    100%  { opacity: 0; }
+    0%     { opacity: 0; }
+    8.33%  { opacity: 1; }
+    33.3%  { opacity: 1; }
+    41.6%  { opacity: 0; }
+    100%   { opacity: 0; }
   }
 
   @keyframes heroDrift {

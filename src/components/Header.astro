@@ -170,6 +170,11 @@ const navLinks = [
     color: var(--color-text);
   }
 
+  /* Force dark X when menu is open — menu bg is off-white so white icon is invisible */
+  .header__menu-btn[aria-expanded="true"] {
+    color: var(--color-text) !important;
+  }
+
   .header__menu-icon,
   .header__menu-icon::before,
   .header__menu-icon::after {

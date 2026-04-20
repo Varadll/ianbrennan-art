@@ -53,6 +53,23 @@ import portrait from '../assets/artworks/portraits/ian-brennan-studio.jpeg';
         </div>
       </div>
     </div>
+
+    <!-- Video section -->
+    <div class="about__media" data-reveal>
+      <h2 class="about__media-heading">Media</h2>
+      <div class="about__video-wrap">
+        <!--
+          VIDEO PLACEHOLDER — replace the src below with the actual
+          YouTube / Vimeo embed URL when the client provides it.
+          Example YouTube: https://www.youtube.com/embed/VIDEO_ID
+          Example Vimeo:   https://player.vimeo.com/video/VIDEO_ID
+        -->
+        <div class="about__video-placeholder">
+          <p class="about__video-label">Ireland AM Interview &middot; Virgin Media</p>
+          <p class="about__video-note">Video embed coming soon</p>
+        </div>
+      </div>
+    </div>
   </section>
 </BaseLayout>
 
@@ -102,5 +119,62 @@ import portrait from '../assets/artworks/portraits/ian-brennan-studio.jpeg';
     font-size: var(--text-lg);
     line-height: 1.7;
     color: var(--color-text-secondary);
+  }
+
+  /* Media / video section */
+  .about__media {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .about__media-heading {
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .about__video-wrap {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  /* Live embed — used when the iframe src is filled in */
+  .about__video-wrap iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+  }
+
+  /* Placeholder shown until embed URL is provided */
+  .about__video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .about__video-label {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-text);
+  }
+
+  .about__video-note {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 </style>

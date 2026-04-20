@@ -68,6 +68,16 @@ body {
   min-height: 100vh;
 }
 
+/* Fixed header: push all page content down, except homepage hero which overrides */
+main {
+  padding-top: var(--header-height);
+}
+
+/* Homepage hero un-does that padding so it sits flush under the fixed header */
+.hero {
+  margin-top: calc(-1 * var(--header-height));
+}
+
 img {
   display: block;
   max-width: 100%;

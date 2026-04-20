@@ -1,5 +1,18 @@
 ---
 const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+
+const pressLinks = [
+  { href: 'https://issuu.com/park_magazine/docs/park_win26_ian_brenan?fr=sYTA5Zjg2MDgyODY', label: 'Park Magazine' },
+  { href: 'https://1883magazine.com/ian-brennan/', label: '1883 Magazine' },
+  { href: 'https://www.irishexaminer.com/news/munster/arid-41239066.html', label: 'Irish Examiner' },
+  { href: 'https://culturalee.art/culturalee-in-conversation-with-ian-brennan/', label: 'Culturalee Art' },
+  { href: 'https://www.semana.com/gente/articulo/el-famoso-pintor-ian-brennan-revelo-como-plasmaria-a-colombia-el-artista-hablo-en-semana/202523/', label: 'Semana Colombia' },
+  { href: 'https://www.forbes.com/sites/leesharrock/2024/11/26/art-as-activism-highlighted-in-fragile-curated-by-daniel-lismore/', label: 'Forbes' },
+  { href: 'https://www.limerickleader.ie/news/what-s-on/1260546/layers-eye-contact-and-nudes-limerick-artist-explores-stories-told-by-bodies.html', label: 'Limerick Leader' },
+  { href: 'https://www.limerickleader.ie/news/home/1542120/nude-painter-ian-brennan-gets-two-pieces-auctioned-in-brussels.html', label: 'Limerick Leader — Brussels' },
+  { href: 'https://www.irishexaminer.com/lifestyle/arid-30933147.html', label: 'Irish Examiner — Lifestyle' },
+];
 
 const navLinks = [
   { href: '/figurative', label: 'Figurative' },
@@ -10,62 +23,86 @@ const navLinks = [
 ];
 ---
 
-<header class="header">
+<header class="header" data-header class:list={[{ 'header--interior': !isHome }]}>
   <div class="header__inner container">
     <a href="/" class="header__logo">Ian Brennan</a>
-
-    <nav class="header__nav" aria-label="Main navigation">
-      <ul class="header__links">
-        {navLinks.map(link => (
-          <li>
-            <a
-              href={link.href}
-              class:list={['header__link', { 'header__link--active': currentPath.startsWith(link.href) }]}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
 
     <button
       class="header__menu-btn"
       aria-label="Open menu"
       aria-expanded="false"
-      aria-controls="mobile-menu"
+      aria-controls="site-menu"
     >
       <span class="header__menu-icon"></span>
     </button>
   </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-    <nav aria-label="Mobile navigation">
-      <ul class="mobile-menu__links">
-        {navLinks.map(link => (
-          <li>
-            <a
-              href={link.href}
-              class:list={['mobile-menu__link', { 'mobile-menu__link--active': currentPath.startsWith(link.href) }]}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </div>
 </header>
 
+<!-- Full-screen overlay menu -->
+<div id="site-menu" class="site-menu" aria-hidden="true" role="dialog" aria-label="Navigation">
+  <nav aria-label="Main navigation">
+    <ul class="site-menu__list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class:list={['site-menu__link', { 'site-menu__link--active': currentPath.startsWith(link.href) }]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+
+      <!-- Press accordion -->
+      <li class="site-menu__press">
+        <button class="site-menu__link site-menu__press-toggle" aria-expanded="false" type="button">
+          Press
+          <svg class="site-menu__press-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <ul class="site-menu__press-links" aria-hidden="true">
+          {pressLinks.map(link => (
+            <li>
+              <a
+                href={link.href}
+                class="site-menu__press-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label} <span aria-hidden="true">&nearr;</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 <style>
+  /* =====================
+     Header
+  ===================== */
   .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
     height: var(--header-height);
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+      background-color 400ms var(--ease),
+      border-color 400ms var(--ease);
+  }
+
+  /* Always solid on interior pages */
+  .header--interior,
+  .header[data-scrolled] {
+    background-color: var(--color-bg);
+    border-bottom-color: var(--color-border);
   }
 
   .header__inner {
@@ -75,60 +112,20 @@ const navLinks = [
     height: 100%;
   }
 
+  /* Logo */
   .header__logo {
     font-family: var(--font-serif);
     font-size: var(--text-xl);
     font-weight: 400;
     letter-spacing: 0.01em;
     white-space: nowrap;
+    color: #fff;
+    transition: color 400ms var(--ease), opacity var(--duration) var(--ease);
   }
 
-  .header__nav {
-    display: none;
-  }
-
-  .header__links {
-    display: flex;
-    gap: var(--space-6);
-  }
-
-  .header__link {
-    position: relative;
-    display: inline-block;
-    font-size: var(--text-sm);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-text-secondary);
-    padding-bottom: 4px;
-    transition: color var(--duration) var(--ease);
-  }
-
-  .header__link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 1px;
-    background-color: currentColor;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform var(--duration) var(--ease-out);
-  }
-
-  .header__link:hover,
-  .header__link--active {
+  .header--interior .header__logo,
+  .header[data-scrolled] .header__logo {
     color: var(--color-text);
-  }
-
-  .header__link:hover::after,
-  .header__link--active::after {
-    transform: scaleX(1);
-  }
-
-  .header__logo {
-    transition: opacity var(--duration) var(--ease);
   }
 
   .header__logo:hover {
@@ -144,6 +141,13 @@ const navLinks = [
     height: 44px;
     position: relative;
     z-index: 110;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .header--interior .header__menu-btn,
+  .header[data-scrolled] .header__menu-btn {
+    color: var(--color-text);
   }
 
   .header__menu-icon,
@@ -152,7 +156,7 @@ const navLinks = [
     display: block;
     width: 24px;
     height: 1.5px;
-    background-color: var(--color-text);
+    background-color: currentColor;
     transition: all var(--duration) var(--ease);
   }
 
@@ -163,9 +167,9 @@ const navLinks = [
   }
 
   .header__menu-icon::before { transform: translateY(-7px); }
-  .header__menu-icon::after { transform: translateY(7px); }
+  .header__menu-icon::after  { transform: translateY(7px); }
 
-  /* Open state */
+  /* Hamburger → ✕ when open */
   .header__menu-btn[aria-expanded="true"] .header__menu-icon {
     background-color: transparent;
   }
@@ -176,71 +180,185 @@ const navLinks = [
     transform: rotate(-45deg);
   }
 
-  /* Mobile Menu */
-  .mobile-menu {
+  /* =====================
+     Full-screen menu
+  ===================== */
+  .site-menu {
     position: fixed;
     inset: 0;
     z-index: 99;
     background-color: var(--color-bg);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: var(--space-8) var(--space-4);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 300ms var(--ease), visibility 300ms var(--ease);
+    transition: opacity 350ms var(--ease), visibility 350ms var(--ease);
+    overflow-y: auto;
   }
 
-  .mobile-menu[aria-hidden="false"] {
+  .site-menu[aria-hidden="false"] {
     opacity: 1;
     visibility: visible;
   }
 
-  .mobile-menu__links {
+  .site-menu__list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-6);
+    gap: var(--space-4);
+    width: 100%;
+    max-width: 400px;
   }
 
-  .mobile-menu__link {
+  .site-menu__link {
     font-family: var(--font-serif);
     font-size: var(--text-2xl);
+    font-weight: 400;
     color: var(--color-text-secondary);
     transition: color var(--duration) var(--ease);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.15em 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.01em;
   }
 
-  .mobile-menu__link:hover,
-  .mobile-menu__link--active {
+  .site-menu__link:hover,
+  .site-menu__link--active {
     color: var(--color-text);
   }
 
-  @media (min-width: 768px) {
-    .header__nav { display: block; }
-    .header__menu-btn { display: none; }
-    .mobile-menu { display: none; }
+  /* Press accordion */
+  .site-menu__press {
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-menu__press-toggle {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .site-menu__press-arrow {
+    transition: transform var(--duration) var(--ease);
+    flex-shrink: 0;
+  }
+
+  .site-menu__press-toggle[aria-expanded="true"] .site-menu__press-arrow {
+    transform: rotate(180deg);
+  }
+
+  .site-menu__press-links {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 400ms var(--ease-out);
+  }
+
+  .site-menu__press-links[aria-hidden="false"] {
+    max-height: 600px;
+  }
+
+  .site-menu__press-link {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    padding: 0.55em 0;
+    transition: color var(--duration) var(--ease);
+  }
+
+  .site-menu__press-link:hover {
+    color: var(--color-text);
   }
 </style>
 
 <script>
-  // Re-bind on every Astro view transition (header is replaced on nav).
-  function bindMenu() {
+  function bindHeader() {
+    const header = document.querySelector<HTMLElement>('[data-header]');
     const menuBtn = document.querySelector<HTMLButtonElement>('.header__menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (!menuBtn || !mobileMenu || menuBtn.dataset.bound === '1') return;
+    const siteMenu = document.getElementById('site-menu');
+    const pressToggle = document.querySelector<HTMLButtonElement>('.site-menu__press-toggle');
+    const pressLinks = document.querySelector<HTMLElement>('.site-menu__press-links');
+
+    if (!header || !menuBtn || !siteMenu) return;
+    if (menuBtn.dataset.bound === '1') return;
     menuBtn.dataset.bound = '1';
+
+    // ---- Transparent header: observe hero on homepage ----
+    const hero = document.querySelector<HTMLElement>('.hero');
+    let ioHeader: IntersectionObserver | null = null;
+
+    if (hero && !header.classList.contains('header--interior')) {
+      ioHeader = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            header.removeAttribute('data-scrolled');
+          } else {
+            header.setAttribute('data-scrolled', '');
+          }
+        },
+        { threshold: 0.1 }
+      );
+      ioHeader.observe(hero);
+    }
+
+    // ---- Hamburger toggle ----
+    function openMenu() {
+      menuBtn!.setAttribute('aria-expanded', 'true');
+      menuBtn!.setAttribute('aria-label', 'Close menu');
+      siteMenu!.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      menuBtn!.setAttribute('aria-expanded', 'false');
+      menuBtn!.setAttribute('aria-label', 'Open menu');
+      siteMenu!.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      // Reset press dropdown
+      if (pressToggle && pressLinks) {
+        pressToggle.setAttribute('aria-expanded', 'false');
+        pressLinks.setAttribute('aria-hidden', 'true');
+      }
+    }
 
     menuBtn.addEventListener('click', () => {
       const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!isOpen));
-      menuBtn.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-      mobileMenu.setAttribute('aria-hidden', String(isOpen));
-      document.body.style.overflow = isOpen ? '' : 'hidden';
+      isOpen ? closeMenu() : openMenu();
     });
+
+    // Close on Escape
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeMenu(); };
+    document.addEventListener('keydown', onKey);
+
+    // ---- Press accordion ----
+    if (pressToggle && pressLinks) {
+      pressToggle.addEventListener('click', () => {
+        const open = pressToggle.getAttribute('aria-expanded') === 'true';
+        pressToggle.setAttribute('aria-expanded', String(!open));
+        pressLinks.setAttribute('aria-hidden', String(open));
+      });
+    }
+
+    // Cleanup before page transition
+    document.addEventListener('astro:before-swap', () => {
+      document.removeEventListener('keydown', onKey);
+      ioHeader?.disconnect();
+      closeMenu();
+    }, { once: true });
   }
 
-  bindMenu();
+  bindHeader();
   document.addEventListener('astro:page-load', () => {
     document.body.style.overflow = '';
-    bindMenu();
+    bindHeader();
   });
 </script>
